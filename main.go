@@ -95,7 +95,7 @@ func main() {
 		cfg.Section("auth").NewKey("password", "your password")
 		cfg.Section("general").NewKey("skip edits", "true")
 		cfg.Section("general").NewKey("download tistory sites", "false")
-		cfg.Section("general").NewKey("max download retries", "5")
+		cfg.Section("general").NewKey("max download retries", "0")
 		cfg.Section("general").NewKey("download timeout", "60")
 		cfg.Section("general").NewKey("send notices to interactive channels", "false")
 		cfg.Section("channels").NewKey("channelid1", "C:\\full\\path\\1")
@@ -747,20 +747,6 @@ func getPossibleTistorySiteUrls(url string) (map[string]string, error) {
 	}
 	request.Header.Add("Accept-Encoding", "identity")
 	request.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36")
-	respHead, err := client.Do(request)
-	if err != nil {
-		return nil, err
-	}
-
-	contentType := ""
-	for headerKey, headerValue := range respHead.Header {
-		if headerKey == "Content-Type" {
-			contentType = headerValue[0]
-		}
-	}
-	if !strings.Contains(contentType, "text/html") {
-		return nil, nil
-	}
 
 	request, err = http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -1014,17 +1000,6 @@ func downloadFromUrl(dUrl string, filename string, path string, channelId string
 		return false
 	}
 
-	contentType := http.DetectContentType(bodyOfResp)
-
-	// check for valid filename, if not, replace with generic filename
-	if !RegexpFilename.MatchString(filename) {
-		filename = time.Now().Format("2006-01-02 15-04-05")
-		possibleExtension, _ := mime.ExtensionsByType(contentType)
-		if len(possibleExtension) > 0 {
-			filename += possibleExtension[0]
-		}
-	}
-
 	completePath := path + string(os.PathSeparator) + filename
 	if _, err := os.Stat(completePath); err == nil {
 		tmpPath := completePath
@@ -1038,13 +1013,6 @@ func downloadFromUrl(dUrl string, filename string, path string, channelId string
 			i = i + 1
 		}
 		fmt.Printf("[%s] Saving possible duplicate (filenames match): %s to %s\n", time.Now().Format(time.Stamp), tmpPath, completePath)
-	}
-
-	contentTypeParts := strings.Split(contentType, "/")
-	if t := contentTypeParts[0]; t != "image" && t != "video" && t != "audio" &&
-		!(t == "application" && isAudioFile(filename)) {
-		fmt.Println("No image, video, or audio found at", dUrl)
-		return true
 	}
 
 	err = ioutil.WriteFile(completePath, bodyOfResp, 0644)
@@ -1078,15 +1046,6 @@ func downloadFromUrl(dUrl string, filename string, path string, channelId string
 
 	updateDiscordStatus()
 	return true
-}
-
-func isAudioFile(f string) bool {
-	switch strings.ToLower(path.Ext(f)) {
-	case ".mp3", ".wav", ".aif":
-		return true
-	default:
-		return false
-	}
 }
 
 type DownloadedImage struct {
