@@ -3,10 +3,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/Seklfreak/discord-image-downloader-go)](https://goreportcard.com/report/github.com/Seklfreak/discord-image-downloader-go)
 [![Build Status](https://travis-ci.com/Seklfreak/discord-image-downloader-go.svg?branch=master)](https://travis-ci.com/Seklfreak/discord-image-downloader-go)
 
-[Download the latest release](https://github.com/Seklfreak/discord-image-downloader-go/releases/latest)
-
-For an actively maintained fork of this project that implements features such as JSON configuration, see [**get-got/discord-downloader-go**](https://github.com/get-got/discord-downloader-go)
-
 ## Discord SelfBots are forbidden!
 [Official Statement](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
 ### You have been warned.
@@ -30,7 +26,7 @@ When you run the tool for the first time it creates a `config.ini` file with exa
 
 In case you are using two-factor authentication you have to login using your token. Remove the email and password lines under the auth section in the config file and instead put in `token = <your token>`. You can acquire your token from the developer tools in your browser (`localStorage.token`) or discord client (Control+Shift+I (Windows) or Command+Option+I, click Application, click Local Storage, click `https://discordapp.com`, and find "token" and paste the value).
 
-## How to download old pictures?
+## How to download old files?
 By default, the tool only downloads new links posted while the tool is running. You can also set up the tool to download the complete history of a channel. To do this you have to run this tool with a separate discord account. Send your second account a dm on your primary account and get the channel id from the direct message channel. Now add this channel id to the config by adding the following lines:
 ```
 [interactive channels]
