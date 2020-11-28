@@ -1,7 +1,7 @@
 # discord-all-files-downloader-go
 
-*This is a fork I made for downloading ALL file extension types instead of just photo/audio/video file extensions.*
-*Credit: Seklfreak*
+**This is a fork I made for downloading ALL file extension types instead of just photo/audio/video file extensions.**
+**Credit: Seklfreak**
 
 [<img src="https://img.shields.io/badge/Support-me!-orange.svg">](https://www.paypal.me/swk)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Seklfreak/discord-image-downloader-go)](https://goreportcard.com/report/github.com/Seklfreak/discord-image-downloader-go)
