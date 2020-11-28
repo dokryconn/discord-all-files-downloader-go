@@ -1,7 +1,9 @@
 # discord-all-files-downloader-go
 
 **This is a forked version for downloading ALL file extension types instead of just photo/audio/video file extensions.**
+
 I have removed a few blocks of code that specified the target file extensions types and added the config.ini file with the ```[interactive channels]``` option included.
+
 **Credit: Seklfreak**
 
 [<img src="https://img.shields.io/badge/Support-me!-orange.svg">](https://www.paypal.me/swk)
