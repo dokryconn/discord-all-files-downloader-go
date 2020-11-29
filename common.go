@@ -1,11 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"path"
 	"strings"
-
-	"github.com/bwmarrin/discordgo"
 )
 
 // isDiscordEmoji matches https://cdn.discordapp.com/emojis/503141595860959243.gif, and similar URLs/filenames
