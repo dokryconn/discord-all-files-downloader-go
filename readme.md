@@ -3,6 +3,7 @@
 **This is a forked version for downloading ALL file extension types instead of just photo/audio/video file extensions.**
 
 I have removed a few blocks of code that specified the target file extensions types and added the config.ini file with the ```[interactive channels]``` option included.
+I also removed the lines of code that updated the Discord status to "Watching 123 downloaded pictures"
 
 **Credit: Seklfreak**
 
