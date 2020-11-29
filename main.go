@@ -1098,16 +1098,6 @@ func findDownloadedImageByUrl(url string) []*DownloadedImage {
 	return downloadedImages
 }
 
-func countDownloadedImages() int {
-	i := 0
-	myDB.Use("Downloads").ForEachDoc(func(id int, docContent []byte) (willMoveOn bool) {
-		// fmt.Printf("%v\n", findDownloadedImageById(id))
-		i++
-		return true
-	})
-	return i
-	// fmt.Println(myDB.Use("Downloads").ApproxDocCount()) TODO?
-}
 
 // http://stackoverflow.com/a/18695740/1443726
 func sortStringIntMapByValue(m map[string]int) PairList {
