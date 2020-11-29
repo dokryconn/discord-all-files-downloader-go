@@ -220,8 +220,6 @@ func main() {
 		u.Username)
 	DiscordUserId = u.ID
 
-	updateDiscordStatus()
-
 	// keep program running until CTRL-C is pressed.
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
@@ -1044,7 +1042,6 @@ func downloadFromUrl(dUrl string, filename string, path string, channelId string
 		fmt.Println("Error while writing to database", err)
 	}
 
-	updateDiscordStatus()
 	return true
 }
 
